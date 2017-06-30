@@ -4,9 +4,14 @@ import crypto from 'crypto';
 import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
 import {Schema} from 'mongoose';
+import currency from '../../components/currency';
 
 var UserSchema = new Schema({
-  name: String,
+  username: String,
+  name: {
+    first: String,
+    last: String
+  },
   email: {
     type: String,
     lowercase: true,
@@ -21,7 +26,31 @@ var UserSchema = new Schema({
     required: true
   },
   provider: String,
-  salt: String
+  salt: String,
+  preferences: {},
+  labels: [String],
+  cash: {
+    type: Number,
+    default: 0,
+    get: currency.get,
+    set: currency.set
+  },
+  holdings: [{
+    type: Schema.ObjectId,
+    ref: 'Holding'
+  }],
+  transactions: [{
+    type: Schema.ObjectId,
+    ref: 'Transaction'
+  }],
+  created: {
+    type: Date,
+    default: Date.now
+  },
+  modified: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 /**
@@ -96,6 +125,8 @@ var validatePresenceOf = function(value) {
  */
 UserSchema
   .pre('save', function(next) {
+    this.modified = Date.now();
+
     // Handle new/update passwords
     if (!this.isModified('password')) {
       return next();

@@ -1,15 +1,15 @@
 /**
- * User model events
+ * Label model events
  */
 
 'use strict';
 
 import {EventEmitter} from 'events';
-import User from './user.model';
-var UserEvents = new EventEmitter();
+import Label from './label.model';
+var LabelEvents = new EventEmitter();
 
 // Set max event listeners (0 == unlimited)
-UserEvents.setMaxListeners(0);
+LabelEvents.setMaxListeners(0);
 
 // Model events
 var events = {
@@ -20,13 +20,14 @@ var events = {
 // Register the event emitter to the model events
 for (var e in events) {
   var event = events[e];
-  User.schema.post(e, emitEvent(event));
+  Label.schema.post(e, emitEvent(event));
 }
 
 function emitEvent(event) {
   return function(doc) {
-    UserEvents.emit(event, doc);
+    LabelEvents.emit(event + ':' + doc._id, doc);
+    LabelEvents.emit(event, doc);
   }
 }
 
-export default UserEvents;
+export default LabelEvents;

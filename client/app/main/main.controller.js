@@ -4,13 +4,28 @@
 
   class MainController {
 
-    constructor($http, $scope, socket) {
+    constructor($http, $scope, socket, Auth) {
+
       this.$http = $http;
       this.socket = socket;
       this.awesomeThings = [];
 
       $scope.$on('$destroy', function() {
-        socket.unsyncUpdates('thing');
+        socket.unsyncUpdates('user');
+      });
+
+      Auth.getCurrentUser().$promise.then(user => {
+        this.user = user;
+        // console.log(`save:${this.user._id}`);
+        // console.log(this.socket.io);
+        // this.socket.io.on('user:save', function(item) {
+          // console.log('Saved', item);
+        // });
+        // this.socket.io.on('user:save', (user) => {
+          // console.log('test');
+          // console.log(user);
+        // });
+        // this.socket.syncUpdates('user', this.user, );
       });
     }
 

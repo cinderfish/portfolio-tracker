@@ -16,7 +16,13 @@ function onConnect(socket) {
     socket.log(JSON.stringify(data, null, 2));
   });
 
+  // console.log(`User connected: ${socket.id}`);
+
   // Insert sockets below
+  // require('../api/user/user.socket').register(socket, io);
+  // require('../api/holding/holding.socket').register(socket);
+  // require('../api/label/label.socket').register(socket);
+  // require('../api/transaction/transaction.socket').register(socket);
   require('../api/thing/thing.socket').register(socket);
 
 }

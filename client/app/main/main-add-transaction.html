@@ -1,0 +1,102 @@
+<div>
+  <h6>Add Transaction</h6>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-2 col-md-2">
+      <div class="form-group">
+        <label for="transaction.symbol">Symbol</label>
+        <input
+          id="transaction.symbol"
+          type="text"
+          class="form-control"
+          ng-model="$ctrl.transaction.symbol"
+          placeholder="Symbol (eg GOOG)">
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-3 col-md-1">
+      <div class="form-group">
+        <label for="transaction.type">Type</label>
+        <select
+          id="transaction.type"
+          class="form-control"
+          ng-model="$ctrl.transaction.type"
+          placeholder="Transaction Type">
+          <option>Select Type...</option>
+          <option value="buy">Buy</option>
+          <option value="sell">Sell</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-2 col-md-2">
+      <div class="form-group">
+        <label for="transaction.date">Date</label>
+        <input
+          id="transaction.date"
+          type="date"
+          class="form-control"
+          ng-model="$ctrl.transaction.date"
+          placeholder="Deposit Date">
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-2 col-md-1">
+      <div class="form-group">
+        <label for="transaction.shares">Shares</label>
+        <input
+          id="transaction.shares"
+          type="number"
+          step="1"
+          class="form-control"
+          ng-model="$ctrl.transaction.shares"
+          placeholder=" Shares">
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-2 col-md-1">
+      <div class="form-group">
+        <label for="transaction.pricePerShare">Price</label>
+        <input
+          id="transaction.pricePerShare"
+          type="number"
+          step="0.01"
+          class="form-control"
+          ng-model="$ctrl.transaction.pricePerShare"
+          placeholder="Price">
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-2 col-md-2">
+      <div class="form-group">
+        <label for="transaction.commission">Commission</label>
+        <input
+          id="transaction.commission"
+          type="number"
+          step="0.01"
+          class="form-control"
+          ng-model="$ctrl.transaction.commission"
+          placeholder="Commission">
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-4 col-md-3">
+      <label for="transaction.notes">Notes</label>
+      <input
+        id="transaction.notes"
+        type="text"
+        class="form-control"
+        ng-model="$ctrl.transaction.notes"
+        placeholder="Transaction Notes">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 text-right">
+      <button type="submit" class="btn btn-primary btn-sm" ng-click="">
+        Save
+      </button>
+      <button class="btn btn-default btn-sm" ui-sref=".^">Cancel</button>
+    </div>
+  </div>
+</div>
